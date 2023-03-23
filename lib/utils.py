@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # Python version: 3.6
 
+#### utils에 dataset import 하니까 cub2011.py도 같은 위치에 놓기
 import copy
 import torch
 from torchvision import datasets, transforms
