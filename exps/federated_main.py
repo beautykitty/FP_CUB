@@ -173,9 +173,9 @@ if __name__ == '__main__':
         k_list = np.random.randint(args.shots, args.shots + 1, args.num_users)
     elif args.dataset == 'femnist':
         k_list = np.random.randint(args.shots - args.stdev + 1 , args.shots + args.stdev + 1, args.num_users)
-    elif args.dataset == 'cub':
+    ####
+    elif args.dataset == 'cub200':
         k_list = np.random.randint(args.shots - args.stdev + 1 , args.shots + args.stdev + 1, args.num_users)
-
 
     ##
     train_dataset, test_dataset, user_groups, user_groups_lt, classes_list, classes_list_gt = get_dataset(args, n_list, k_list)
@@ -209,7 +209,7 @@ if __name__ == '__main__':
             local_model = CNNFemnist(args=args)
 
         ####
-        elif args.dataset == 'cifar100' or args.dataset == 'cifar10' or args.dataset == 'cub':
+        elif args.dataset == 'cifar100' or args.dataset == 'cifar10' or args.dataset == 'cub200':
             if args.mode == 'model_heter':
                 if i<10:
                     args.stride = [1,4]
