@@ -1,3 +1,13 @@
+https://github.dev/~
+
+
+
+** FP_CUB : multi layer representation
+
+
+resnet.py
+
+
 import torch.nn as nn
 import torch.utils.model_zoo as model_zoo
 import torch.nn.functional as F
@@ -237,9 +247,7 @@ def resnet152(pretrained=False, **kwargs):
 
 
 
-
-
-
+#
 if __name__ == '__main__':
 
     from PIL import Image
@@ -248,17 +256,33 @@ if __name__ == '__main__':
     import torchvision.models as models
     import torchvision.transforms as transforms
     
+    #### 
+    trans_cub_train = transforms.Compose([
+        transforms.RandomResizedCrop(224),
+        transforms.RandomHorizontalFlip(),
+        transforms.ToTensor(),
+        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+    ])
+
+    trans_cub_val = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+
+    #### data 위치 확인 
+    train_dataset = Cub2011("../data", train=True, download=False, transform = trans_cub_train)
+    trainloader = torch.utils.data.DataLoader(trainset, batch_size=4 shuffle=True, num_workers=2)
+
+    # trans_cifar10_train = transforms.Compose([transforms.RandomCrop(32, padding=4),
+    #                                           transforms.RandomHorizontalFlip(),
+    #                                           transforms.ToTensor(),
+    #                                           transforms.Normalize(mean=[0.485, 0.456, 0.406],
+    #                                                                std=[0.229, 0.224, 0.225])])
     
-    trans_cifar10_train = transforms.Compose([transforms.RandomCrop(32, padding=4),
-                                              transforms.RandomHorizontalFlip(),
-                                              transforms.ToTensor(),
-                                              transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                                                                   std=[0.229, 0.224, 0.225])])
+
+    # train_dataset = datasets.CIFAR10("./", train=True, download=False, transform=trans_cifar10_train)
     
-    train_dataset = datasets.CIFAR10("./", train=True, download=False, transform=trans_cifar10_train)
-    
-    trainloader = torch.utils.data.DataLoader(train_dataset, batch_size=2,
-                                              shuffle=True, num_workers=2,drop_last=True)
+    # trainloader = torch.utils.data.DataLoader(train_dataset, batch_size=2,
+    #                                           shuffle=True, num_workers=2,drop_last=True)
 
 
     
