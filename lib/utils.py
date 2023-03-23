@@ -27,7 +27,8 @@ trans_cifar100_train = transforms.Compose([transforms.RandomCrop(32, padding=4),
 trans_cifar100_val = transforms.Compose([transforms.ToTensor(),
                                          transforms.Normalize(mean=[0.507, 0.487, 0.441],
                                                               std=[0.267, 0.256, 0.276])])
-####
+#### get_dataset함수 안에 
+
 trans_cub_train = transforms.Compose([
         transforms.RandomResizedCrop(224),
         transforms.RandomHorizontalFlip(),
@@ -40,10 +41,6 @@ trans_cub_val = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     ])
-
-#### get_dataset함수 안에 
-
-
 
 #### update.py에 dataloader 있음 
 #trainloader = torch.utils.data.DataLoader(trainset, batch_size=4 shuffle=True, num_workers=2)
@@ -145,8 +142,8 @@ def get_dataset(args, n_list, k_list):
                 user_groups, classes_list = cifar100_noniid(args, train_dataset, args.num_users, n_list, k_list)
                 user_groups_lt = cifar100_noniid_lt(test_dataset, args.num_users, classes_list)
 
-    ####
-    elif args.dataset == 'cub':
+    #### dadtaset name 정하기
+    elif args.dataset == 'cub200': 
         train_dataset = datasets.CUB200(data_dir, train=True,
                                         download=True, transform=trans_cub_train)
         test_datasest = datasets.CUB200(data_dir, train=False, download = True,transform=trans_cub_val)     
