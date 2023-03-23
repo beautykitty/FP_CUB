@@ -702,17 +702,16 @@ def cub_noniid_lt(args, test_dataset, num_users, n_list, k_list, classes_list):
 
 
 
-
-
-
-
-
 if __name__ == '__main__':
-    dataset_train = datasets.MNIST('./data/mnist/', train=True, download=True,
-                                   transform=transforms.Compose([
-                                       transforms.ToTensor(),
-                                       transforms.Normalize((0.1307,),
-                                                            (0.3081,))
-                                   ]))
-    num = 100
-    d = mnist_noniid(dataset_train, num)
+    #### 
+    dataset_train = Cub2011('./data/CUB200/', train=True, downlaod = False) 
+    
+    
+#     dataset_train = datasets.MNIST('./data/mnist/', train=True, download=True,
+#                                    transform=transforms.Compose([
+#                                        transforms.ToTensor(),
+#                                        transforms.Normalize((0.1307,),
+#                                                             (0.3081,))
+#                                    ]))
+#     num = 100
+#     d = mnist_noniid(dataset_train, num)
