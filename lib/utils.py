@@ -6,6 +6,8 @@
 import copy
 import torch
 from torchvision import datasets, transforms
+####
+from cub2011 import Cub2011
 from sampling import mnist_iid, mnist_noniid, mnist_noniid_unequal, mnist_noniid_lt
 from sampling import femnist_iid, femnist_noniid, femnist_noniid_unequal, femnist_noniid_lt
 from sampling import cifar_iid, cifar100_noniid, cifar10_noniid, cifar100_noniid_lt, cifar10_noniid_lt
